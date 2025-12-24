@@ -159,7 +159,7 @@
         padding: 70px 20px;
       }
     }
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: 769px) and (max-width: 1023px) {
      .hero h1 {
     font-size: 46px;
     color : rgb(195, 255, 0);

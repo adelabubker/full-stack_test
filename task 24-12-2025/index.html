@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .box {
+      width: 200px;
+      height: 150px;
+      margin: 100px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-weight: bold;
+      color: white;
+      background: blue;
+    }
+    @media (max-width: 768px) {
+      .box { 
+        background:red; 
+    }
+    }
+
+
+    @media (min-width: 769px) and (max-width: 1023px) {
+      .box { 
+        background: yellow; 
+        color: black;
+      }
+    }
+
+
+    @media (min-width: 1024px) {
+      .box { background: blue; }
+    }
+  </style>
+</head>
+<body>
+  <div class="box">box</div>
+</body>
+</html>

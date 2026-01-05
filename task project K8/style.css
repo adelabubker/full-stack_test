@@ -1,0 +1,80 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0b0b0c;
+  color: #fff;
+}
+
+.nav-blur {
+  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,.4);
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.8)),
+    url("https://img.freepik.com/free-photo/ai-robot-interacting-with-futuristic-data-interface_23-2152005489.jpg?semt=ais_hybrid&w=740&q=80")
+    center / cover no-repeat;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hero .lead {
+  opacity: .85;
+  max-width: 520px;
+}
+
+.pillars {
+  padding: 90px 0;
+}
+
+.pillar-card {
+  background: #131316;
+  border-radius: 14px;
+  padding: 25px;
+  height: 100%;
+}
+
+.pillar-card h6 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.usecase {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px 0; 
+}
+
+.usecase .badge {
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.section-title {
+  margin-bottom: 40px;
+}
+
+.cta {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #1c1c1f, #0b0b0c);
+}
+.cta h2 {
+  max-width: 720px;
+  margin: 0 auto 10px;
+}
+
+.cta p {
+  opacity: .85;
+}
+

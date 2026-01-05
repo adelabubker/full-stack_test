@@ -1,0 +1,81 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0b0b0c;
+  color: #fff;
+}
+
+.nav-blur {
+  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,.4);
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(80% 60% at 10% 20%, rgba(34,197,94,.12), transparent 60%),
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.8)),
+    url("https://media.istockphoto.com/id/2153711283/photo/abstract-data-flow-background.jpg?s=612x612&w=0&k=20&c=tKBt5lPfz6smBlMDoDtHsZy02CY9jgzBksDh7FWiumM=")
+    center / cover no-repeat;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hero .lead {
+  opacity: .85;
+  max-width: 520px;
+}
+
+.pillars {
+  padding: 90px 0;
+}
+
+.pillar-card {
+  background: #131316;
+  border-radius: 14px;
+  padding: 25px;
+  height: 100%;
+}
+
+.pillar-card h6 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.usecase {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px 0; /* اخترت 18px بدل 15px للتناسق */
+}
+
+.usecase .badge {
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.section-title {
+  margin-bottom: 40px;
+}
+
+.cta {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #1c1c1f, #0b0b0c);
+}
+.cta h2 {
+  max-width: 720px;
+  margin: 0 auto 10px;
+}
+
+.cta p {
+  opacity: .85;
+}
+

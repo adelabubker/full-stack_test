@@ -22,9 +22,9 @@ const services = [
 ];
 
 
-  const servicesContainer = document.getElementById("servicesContainer");
 
-  servicesContainer.innerHTML = services.map(service => `
+services.forEach(service => {
+  html += `
     <div class="col-md-6 col-lg-3">
       <div class="card h-100 shadow-sm service-card" data-service="${service.title}">
         <div class="card-body">
@@ -34,4 +34,7 @@ const services = [
         </div>
       </div>
     </div>
-  `).join("");
+  `;
+});
+
+servicesContainer.innerHTML = html;

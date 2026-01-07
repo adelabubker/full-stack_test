@@ -20,22 +20,53 @@ const services = [
     description: "Strategic guidance to identify automation opportunities and optimize workflows."
   }
 ];
-
 const servicesContainer = document.getElementById("servicesContainer");
-let html = "";
+const contactModal = document.getElementById("contactModal");
+const selectedServiceText = document.getElementById("selectedService");
+const closeModalBtn = document.getElementById("closeModal");
 
-services.forEach(service => {
-  html += `
-  <div class="col-md-6 col-lg-3">
-  <div class="card h-100 shadow-sm service-card" data-service="${service.title}">
-<div class="card-body">
-    <h5 class="card-title">${service.title}</h5>
-  <p class="card-text">${service.description}</p>
-    <button class="btn btn-outline-light rounded-pill w-100 mt-3">Get the service</button>
-  </div>
-</div>
-</div>
-`;
+
+function renderServices(data) {
+  let html = "";
+  data.forEach(service => {
+    html += `
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 shadow-sm service-card" data-service="${service.title}">
+          <div class="card-body">
+            <h5 class="card-title">${service.title}</h5>
+            <p class="card-text">${service.description}</p>
+            <button class="btn btn-outline-light rounded-pill w-100 mt-3">Get the service</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+  servicesContainer.innerHTML = html;
+}
+
+renderServices(services);
+
+servicesContainer.addEventListener("click", e => {
+  if (e.target.tagName === "BUTTON") {
+    const serviceName = e.target.closest(".service-card").dataset.service;
+    selectedServiceText.textContent = serviceName;
+    contactModal.style.display = "flex";
+  }
 });
 
-servicesContainer.innerHTML = html;
+
+closeModalBtn.addEventListener("click", () => contactModal.style.display = "none");
+contactModal.addEventListener("click", e => {
+  if (e.target === contactModal) contactModal.style.display = "none";
+});
+
+
+document.getElementById("allBtn").addEventListener("click", () => renderServices(services));
+document.getElementById("aiBtn").addEventListener("click", () => {
+  const aiServices = services.filter(s => s.title.includes("AI"));
+  renderServices(aiServices);
+});
+document.getElementById("workflowBtn").addEventListener("click", () => {
+  const workflowServices = services.filter(s => s.title.includes("Workflow"));
+  renderServices(workflowServices);
+});

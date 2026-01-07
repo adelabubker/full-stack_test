@@ -21,20 +21,21 @@ const services = [
   }
 ];
 
-
+const servicesContainer = document.getElementById("servicesContainer");
+let html = "";
 
 services.forEach(service => {
   html += `
-    <div class="col-md-6 col-lg-3">
-      <div class="card h-100 shadow-sm service-card" data-service="${service.title}">
-        <div class="card-body">
-          <h5 class="card-title">${service.title}</h5>
-          <p class="card-text">${service.description}</p>
-          <button class="btn btn-outline-light rounded-pill w-100 mt-3">Get the service</button>
-        </div>
-      </div>
-    </div>
-  `;
+  <div class="col-md-6 col-lg-3">
+  <div class="card h-100 shadow-sm service-card" data-service="${service.title}">
+<div class="card-body">
+    <h5 class="card-title">${service.title}</h5>
+  <p class="card-text">${service.description}</p>
+    <button class="btn btn-outline-light rounded-pill w-100 mt-3">Get the service</button>
+  </div>
+</div>
+</div>
+`;
 });
 
 servicesContainer.innerHTML = html;

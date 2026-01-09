@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="author" content="K8" />
+  <meta name="developer" content="K8 - Automation Solutions Developer" />
+  <meta name="description" content="Enterprise-grade workflow automation powered by n8n and AI. Developed by K8." />
+  <title>Automation | n8n Solutions by K8</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- كووود navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top nav-blur">
+  <div class="container align-items-center">
+    <a class="logo" href="#">K8</a>
+    <div class="mx-auto">
+      <ul class="navbar-nav flex-row">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#services">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <a href="#audit" class="btn btn-outline-light rounded-pill px-4">Login</a>
+    </div>
+  </div>
+</nav>
+
+<!-- code hero  -->
+<section class="hero py-5">
+  <div class="container mt-5 pt-5">
+    <div class="row">
+      <div class="col-lg-7">
+        <h1>Automate.<br>Orchestrate.<br>Scale.</h1>
+        <p class="lead">Enterprise-grade workflow automation powered by n8n and AI.</p>
+        <div class="d-flex gap-3 mt-4">
+          <a href="#services" class="btn btn-light rounded-pill px-4">View Use Cases</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- code services  -->
+<section id="services" class="services py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Our Automation Services</h2>
+    <div class="search-filter-container">
+      <!-- code Search Bar -->
+      <div class="search-wrapper">
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="search-input" 
+          placeholder="Search services by name or description..."
+        />
+      </div>
+      
+      <!-- Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all"  id="resetBtn">All</button>
+        <button class="filter-tab" data-filter="ai">AI Services</button>
+        <button class="filter-tab" data-filter="workflow">Workflow</button>
+        
+      </div>
+    </div>
+
+    <!-- Services Container -->
+    <div class="row g-4" id="servicesContainer">
+      <!-- هون بكون كود js الخاص ب services -->
+    </div>
+  </div>
+</section>
+
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal-content">
+    <button class="modal-close" id="closeModal">×</button>
+    
+    <h2 class="modal-header-title">Get Started</h2>
+    <p class="modal-header-subtitle" id="selectedService">Tell us about your project</p>
+    
+    <form id="contactForm">
+      <div class="form-group">
+        <label class="form-label" for="name">Your Name</label>
+        <input type="text" id="name" class="form-input" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input type="email" id="email" class="form-input" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="subject">Subject</label>
+        <input type="text" id="subject" class="form-input" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="message">Message</label>
+        <textarea id="message" class="form-input form-textarea" required placeholder="Tell us about your automation needs..."></textarea>
+      </div>
+
+      <button type="submit" id="submitBtn" class="submit-btn disabled">
+        Send Message
+      </button>
+
+      <div id="statusMessage" class="status-message"></div>
+    </form>
+  </div>
+</div>
+
+<!-- code Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="developer-credit">
+        <h3>K8</h3>
+        <p>Automation Solutions Developer | n8n Specialist</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2026 K8 Automation Solutions. All rights reserved. | Developed with by <a href="#">K8</a></p>
+    </div>
+  </div>
+</footer>
+
+<!--روابط js and boot Scripts -->
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

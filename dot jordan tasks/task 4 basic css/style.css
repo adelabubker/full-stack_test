@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
+.card {
+    font-family: "Google Sans", sans-serif;
+    width: 300px;
+    margin: 40px auto;       
+    padding: 20px;            
+    border: 2px solid #00313d;  
+}
+
+.name {
+    font-family: "Google Sans", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.me {
+    font-family: "Google Sans", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4d9a8c;
+}
+
+.skill {
+    font-family: "Google Sans", sans-serif;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    border: 1px solid #000000;
+    font-size: 12px;
+}

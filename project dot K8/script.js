@@ -49,9 +49,7 @@ const services = [
   }
 ];
 
-/* ================================
-   DOM REFERENCES
-================================ */
+
 const servicesContainer = document.getElementById("servicesContainer");
 const filterTabs = document.querySelectorAll(".filter-tab");
 const contactModal = document.getElementById("contactModal");
@@ -60,14 +58,12 @@ const closeModalBtn = document.getElementById("closeModal");
 const searchInput = document.getElementById("searchInput");
 const resetBtn = document.getElementById("resetBtn");
 
-// Find the most popular service
+
 const topService = services.reduce((max, service) => 
   service.popularity > max.popularity ? service : max
 );
 
-/* ================================
-   RENDER ENGINE
-================================ */
+
 function renderServices(list) {
   if (list.length === 0) {
     servicesContainer.innerHTML = `
@@ -97,24 +93,19 @@ function renderServices(list) {
   }).join("");
 }
 
-// Initial render
 renderServices(services);
 
-/* ================================
-   SEARCH FUNCTIONALITY
-================================ */
+
 searchInput.addEventListener("input", (e) => {
   const searchTerm = e.target.value.toLowerCase().trim();
   const activeFilter = document.querySelector(".filter-tab.active").dataset.filter;
   
   let filteredServices = services;
-  
-  // Apply category filter
+
   if (activeFilter !== "all") {
     filteredServices = filteredServices.filter(s => s.category === activeFilter);
   }
-  
-  // Apply search filter
+
   if (searchTerm) {
     filteredServices = filteredServices.filter(s => 
       s.title.toLowerCase().includes(searchTerm) ||
@@ -125,9 +116,6 @@ searchInput.addEventListener("input", (e) => {
   renderServices(filteredServices);
 });
 
-/* ================================
-   FILTER CONTROLLER
-================================ */
 filterTabs.forEach(tab => {
   tab.addEventListener("click", () => {
     filterTabs.forEach(t => t.classList.remove("active"));
@@ -137,13 +125,11 @@ filterTabs.forEach(tab => {
     const searchTerm = searchInput.value.toLowerCase().trim();
     
     let filteredServices = services;
-    
-    // Apply category filter
+
     if (filter !== "all") {
       filteredServices = filteredServices.filter(s => s.category === filter);
     }
-    
-    // Apply search filter
+
     if (searchTerm) {
       filteredServices = filteredServices.filter(s => 
         s.title.toLowerCase().includes(searchTerm) ||
@@ -155,27 +141,19 @@ filterTabs.forEach(tab => {
   });
 });
 
-/* ================================
-   RESET FUNCTIONALITY
-================================ */
+
 resetBtn.addEventListener("click", () => {
-  // Clear search input
+
   searchInput.value = "";
-  
-  // Reset to "All" filter
+
   filterTabs.forEach(t => t.classList.remove("active"));
   document.querySelector('.filter-tab[data-filter="all"]').classList.add("active");
-  
-  // Render all services
+
   renderServices(services);
-  
-  // Add visual feedback
+
  
 });
 
-/* ================================
-   MODAL CONTROLLER
-================================ */
 servicesContainer.addEventListener("click", e => {
   if (e.target.classList.contains("service-cta")) {
     const card = e.target.closest(".service-card");
@@ -184,6 +162,33 @@ servicesContainer.addEventListener("click", e => {
     document.body.classList.add("modal-open");
   }
 });
+
+const paragraphs = document.querySelectorAll("#servicesContainer p");
+
+paragraphs.forEach((p, index) => {
+  if (index === 0) {
+
+    p.style.color = "#f3b86b"; 
+    p.style.fontWeight = "700";
+  } else {
+
+    p.style.color = "rgba(255,255,255,0.8)";
+    p.style.fontWeight = "400";
+
+    p.addEventListener("mouseenter", () => {
+      p.style.transform = "translateX(5px)";
+      p.style.transition = "transform 0.2s ease";
+    });
+    p.addEventListener("mouseleave", () => {
+      p.style.transform = "translateX(0)";
+    });
+
+    p.addEventListener("click", () => {
+      alert(`You clicked on: "${p.textContent}"`);
+    });
+  }
+});
+
 
 closeModalBtn.addEventListener("click", closeModal);
 contactModal.addEventListener("click", e => {
@@ -195,15 +200,11 @@ function closeModal() {
   document.body.classList.remove("modal-open");
 }
 
-/* ================================
-   FORM VALIDATION
-================================ */
 const contactForm = document.getElementById("contactForm");
 const submitBtn = document.getElementById("submitBtn");
 const statusMessage = document.getElementById("statusMessage");
 const formInputs = contactForm.querySelectorAll(".form-input");
 
-// Enable submit button when all fields are filled
 formInputs.forEach(input => {
   input.addEventListener("input", () => {
     const allFilled = Array.from(formInputs).every(inp => inp.value.trim() !== "");
@@ -211,13 +212,11 @@ formInputs.forEach(input => {
   });
 });
 
-// Handle form submission
 contactForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  
+    console.log("Form submitted");
   if (submitBtn.classList.contains("disabled")) return;
-  
-  // Simulate form submission
+
   submitBtn.textContent = "Sending...";
   submitBtn.disabled = true;
   
@@ -226,8 +225,7 @@ contactForm.addEventListener("submit", (e) => {
     statusMessage.className = "status-message success visible";
     submitBtn.textContent = "Send Message";
     submitBtn.disabled = false;
-    
-    // Reset form after 3 seconds
+
     setTimeout(() => {
       contactForm.reset();
       statusMessage.classList.remove("visible");

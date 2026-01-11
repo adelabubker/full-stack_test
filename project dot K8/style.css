@@ -59,9 +59,7 @@ body {
     linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.8));
 }
 
-/* ================================
-   SEARCH & FILTER SECTION
-================================ */
+
 .search-filter-container {
   display: flex;
   flex-direction: column;
@@ -152,11 +150,6 @@ body {
   transform: translateY(-1px);
 }
 
-
-
-/* ================================
-   SERVICE CARDS
-================================ */
 .service-card {
   background: rgba(255, 254, 254, 0.05);
   border: 1px solid rgba(255,255,255,.1);
@@ -184,7 +177,6 @@ body {
   height: 100%;
 }
 
-/* Top Service Highlight */
 .service-card.top-service {
   background: linear-gradient(135deg, rgba(243, 184, 107, 0.15), rgba(232, 159, 60, 0.1));
   border: 2px solid #f3b86b;
@@ -267,9 +259,7 @@ body {
   text-align: right;
 }
 
-/* ================================
-   SERVICE CTA BUTTON
-================================ */
+
 .service-cta {
   width: 100%;
   padding: 12px;
@@ -296,9 +286,6 @@ body {
 */
 
 
-/* ================================
-   MODAL STYLES
-================================ */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -462,9 +449,6 @@ body {
   overflow: hidden;
 }
 
-/* ================================
-   FOOTER
-================================ */
 .site-footer {
   background: rgba(0, 0, 0, 0.5);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -520,9 +504,6 @@ body {
   color: #e89f3c;
 }
 
-/* ================================
-   RESPONSIVE
-================================ */
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 2.5rem;

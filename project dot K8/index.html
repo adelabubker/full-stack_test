@@ -26,7 +26,7 @@
           <a class="nav-link" href="#services">Services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Projects</a>
+          <a class="nav-link" href="#success-stories">Success Stories</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
@@ -72,10 +72,9 @@
       
       <!-- Filter Tabs -->
       <div class="filter-tabs">
-        <button class="filter-tab active" data-filter="all"  id="resetBtn">All</button>
+        <button class="filter-tab active" data-filter="all" id="resetBtn">All</button>
         <button class="filter-tab" data-filter="ai">AI Services</button>
         <button class="filter-tab" data-filter="workflow">Workflow</button>
-        
       </div>
     </div>
 
@@ -85,6 +84,162 @@
     </div>
   </div>
 </section>
+
+<!-- وهون قسم القصص -->
+<section id="success-stories" class="success-stories py-5">
+  <div class="container">
+    <h2 class="text-center mb-3">Client Success Stories</h2>
+    <p class="text-center text-muted mb-5">Real results from businesses we've helped automate</p>
+    
+    <!-- Control Panel -->
+    <div class="stories-control-panel">
+      <button id="fetchStoriesBtn" class="fetch-stories-btn">
+        <span class="btn-icon">📊</span>
+        Load Success Stories
+      </button>
+      
+      <div class="industry-filters" id="industryFilters" style="display: none;">
+        <button class="industry-filter-btn active" data-industry="all">All Industries</button>
+        <button class="industry-filter-btn" data-industry="Finance">Finance</button>
+        <button class="industry-filter-btn" data-industry="Healthcare">Healthcare</button>
+        <button class="industry-filter-btn" data-industry="Retail">Retail</button>
+        <button class="industry-filter-btn" data-industry="Technology">Technology</button>
+      </div>
+      
+      <div class="stories-stats" id="storiesStats" style="display: none;">
+        <div class="stat-item">
+          <span class="stat-label">Total Stories:</span>
+          <span class="stat-value" id="totalStories">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Avg. Efficiency:</span>
+          <span class="stat-value" id="avgEfficiency">0%</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Total Hours Saved:</span>
+          <span class="stat-value" id="totalHoursSaved">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Fetch Time:</span>
+          <span class="stat-value" id="fetchTime">0ms</span>
+        </div>
+      </div>
+      
+      <button id="resetStoriesBtn" class="reset-stories-btn" style="display: none;">
+        <span class="btn-icon">🔄</span>
+        Reset Stories
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="loading-state" style="display: none;">
+      <div class="loader"></div>
+      <p class="loading-text">Fetching success stories from our database...</p>
+      <p class="loading-subtext">Please wait while we retrieve client data</p>
+    </div>
+
+    <!-- حالات الخطأ والتحميل  -->
+    <div id="errorState" class="error-state" style="display: none;">
+      <div class="error-icon">⚠️</div>
+      <h3 class="error-title">Unable to Load Stories</h3>
+      <p class="error-message" id="errorMessage"></p>
+      <button id="retryBtn" class="retry-btn">Try Again</button>
+    </div>
+
+  
+    <div class="row g-4" id="storiesContainer">
+      <!-- طبعا هون بتطلع القصص شكل ديناميكي  -->
+    </div>
+  </div>
+</section>
+
+<!-- Story Details Modal طبعا ال story هاي شغلها زي form يعني على شكل قراءة المزيد -->
+<div class="modal-overlay" id="storyModal">
+  <div class="modal-content story-modal-content">
+    <button class="modal-close" id="closeStoryModal">×</button>
+    
+    <div class="story-modal-header">
+      <img id="modalClientPhoto" class="modal-client-photo" src="" alt="Client">
+      <div class="modal-header-info">
+        <h2 class="modal-client-name" id="modalClientName"></h2>
+        <p class="modal-company-name" id="modalCompanyName"></p>
+      </div>
+    </div>
+    
+    <div class="story-modal-body">
+      <div class="modal-detail-grid">
+        <div class="modal-detail-item">
+          <span class="detail-icon">🏢</span>
+          <div>
+            <p class="detail-label">Industry</p>
+            <p class="detail-value" id="modalIndustry"></p>
+          </div>
+        </div>
+        
+        <div class="modal-detail-item">
+          <span class="detail-icon">📍</span>
+          <div>
+            <p class="detail-label">Location</p>
+            <p class="detail-value" id="modalLocation"></p>
+          </div>
+        </div>
+        
+        <div class="modal-detail-item">
+          <span class="detail-icon">⏱️</span>
+          <div>
+            <p class="detail-label">Hours Saved Weekly</p>
+            <p class="detail-value" id="modalHoursSaved"></p>
+          </div>
+        </div>
+        
+        <div class="modal-detail-item">
+          <span class="detail-icon">📈</span>
+          <div>
+            <p class="detail-label">Efficiency Gain</p>
+            <p class="detail-value" id="modalEfficiency"></p>
+          </div>
+        </div>
+        
+        <div class="modal-detail-item">
+          <span class="detail-icon">📧</span>
+          <div>
+            <p class="detail-label">Contact Email</p>
+            <p class="detail-value" id="modalEmail"></p>
+          </div>
+        </div>
+        
+        <div class="modal-detail-item">
+          <span class="detail-icon">📞</span>
+          <div>
+            <p class="detail-label">Phone</p>
+            <p class="detail-value" id="modalPhone"></p>
+          </div>
+        </div>
+        
+        <div class="modal-detail-item">
+          <span class="detail-icon">🎂</span>
+          <div>
+            <p class="detail-label">Client Since</p>
+            <p class="detail-value" id="modalClientSince"></p>
+          </div>
+        </div>
+        
+        <div class="modal-detail-item">
+          <span class="detail-icon">🌐</span>
+          <div>
+            <p class="detail-label">Time Zone</p>
+            <p class="detail-value" id="modalTimezone"></p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-testimonial">
+        <h4>Success Story</h4>
+        <p id="modalTestimonial"></p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Contact Modal -->
 <div class="modal-overlay" id="contactModal">
@@ -134,7 +289,7 @@
       </div>
     </div>
     <div class="copyright">
-      <p>&copy; 2026 K8 Automation Solutions. All rights reserved. | Developed with by <a href="#">K8</a></p>
+      <p>&copy; 2026 K8 Automation Solutions. All rights reserved. | Developed with ❤️ by <a href="#">K8</a></p>
     </div>
   </div>
 </footer>

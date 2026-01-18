@@ -1,0 +1,90 @@
+.controls {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.controls h3 {
+  color: #2d3436;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 1.8rem;
+  border-bottom: 3px solid #00b894;
+  padding-bottom: 15px;
+}
+
+.control-group {
+  margin-bottom: 25px;
+}
+
+.control-btn {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.increase {
+  background: linear-gradient(135deg, #00b894, #00a085);
+  color: white;
+}
+
+.decrease {
+  background: linear-gradient(135deg, #e17055, #d63031);
+  color: white;
+}
+
+.change-name {
+  background: linear-gradient(135deg, #0984e3, #6c5ce7);
+  color: white;
+}
+
+.reset {
+  background: linear-gradient(135deg, #fdcb6e, #e17055);
+  color: white;
+}
+
+.control-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.name-control {
+  display: flex;
+  gap: 10px;
+}
+
+.name-input {
+  flex: 1;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  text-align: right;
+}
+
+.name-input:focus {
+  outline: none;
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+}

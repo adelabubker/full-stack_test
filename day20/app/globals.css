@@ -1,0 +1,252 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #050505;
+  color: white;
+  font-family: Inter, Arial, sans-serif;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.nav-links a {
+  margin: 0 14px;
+  font-size: 14px;
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #f5b14b;
+}
+
+.login-btn {
+  padding: 8px 22px;
+  border-radius: 30px;
+  border: 1px solid #f5b14b;
+  background: transparent;
+  color: #f5b14b;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.login-btn:hover {
+  background: #f5b14b;
+  color: #000;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+  min-height: 95vh;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.3)),
+    radial-gradient(circle at right, #0a2a3a, #000);
+}
+
+.hero h1 {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.hero p {
+  max-width: 520px;
+  margin: 25px 0 35px;
+  color: #ccc;
+  font-size: 18px;
+}
+
+/* ================= BUTTONS ================= */
+
+.primary-btn {
+  background: linear-gradient(135deg, #f5b14b, #ffcc80);
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 1px solid #fff;
+  padding: 14px 28px;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+/* ================= SERVICES ================= */
+
+.services {
+  padding: 80px 60px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.service-card {
+  position: relative;
+  background: linear-gradient(180deg, #0e0e0e, #090909);
+  padding: 32px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(245,177,75,0.15);
+}
+
+.service-card h3 {
+  margin-top: 10px;
+  color: #f5b14b;
+}
+
+.service-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 30px;
+  border: none;
+  background: #f5b14b;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #f5b14b, #ffce8a);
+  color: black;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+  padding: 60px 20px;
+  text-align: center;
+  color: #777;
+  background: #050505;
+}
+
+
+
+/* ================= SUCCESS ================= */
+
+.success {
+  padding: 100px 60px;
+}
+
+.success h1 {
+  font-size: 42px;
+}
+
+.success-subtitle {
+  margin: 15px 0 50px;
+  color: #aaa;
+}
+
+.success-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.success-card {
+  background: #0d0d0d;
+  padding: 30px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.success-card h3 {
+  color: #f5b14b;
+}
+
+.success-card span {
+  display: block;
+  margin-top: 15px;
+  color: #888;
+  font-size: 13px;
+}
+
+/* ================= CONTACT ================= */
+
+.contact {
+  padding: 100px 60px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.contact h1 {
+  font-size: 42px;
+}
+
+.contact-subtitle {
+  margin: 15px 0 40px;
+  color: #aaa;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid #222;
+  background: #0b0b0b;
+  color: white;
+  font-size: 14px;
+}
+
+.contact-form button {
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(135deg, #f5b14b, #ffce8a);
+  font-weight: 600;
+  cursor: pointer;
+}

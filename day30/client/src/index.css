@@ -1,0 +1,16 @@
+body { font-family: Arial, Helvetica, sans-serif; padding: 20px; }
+.nav { display:flex; gap:12px; align-items:center; margin-bottom:18px }
+.nav a { text-decoration:none; color:#0366d6 }
+.nav button { margin-left:8px }
+.login { max-width:320px; display:flex; flex-direction:column; gap:8px }
+.login input { padding:8px; font-size:14px }
+.error { background:#ffe6e6; color:#900; padding:8px; border-radius:4px }
+.card { padding:12px; border:1px solid #ddd; border-radius:6px; background:#fafafa }
+.hint { color:#666; font-size:13px }
+
+.field-error { color:#b00020; font-size:13px; margin-top:4px }
+.login label { display:flex; flex-direction:column; gap:6px }
+.login button { padding:8px 12px; background:#0366d6; color:white; border:none; border-radius:4px }
+.login button[disabled] { opacity:0.6 }
+.toast { position:fixed; top:16px; right:16px; background:#222; color:white; padding:10px 14px; border-radius:6px }
+

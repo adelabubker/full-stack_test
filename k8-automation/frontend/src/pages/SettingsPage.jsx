@@ -11,7 +11,7 @@ const SettingsPage = () => {
     <DashboardLayout>
       <div style={{ animation: 'fadeIn 0.4s ease', maxWidth: '700px' }}>
         <div style={{ marginBottom: '32px' }}>
-          <h1 style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '8px' }}>Settings</h1>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.8rem)', fontWeight: '800', marginBottom: '8px' }}>Settings</h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>System configuration (Full Admin only)</p>
         </div>
 
@@ -21,7 +21,7 @@ const SettingsPage = () => {
             <User size={18} style={{ color: 'var(--accent-primary)' }} />
             <h2 style={{ fontSize: '1rem', fontWeight: '700' }}>Your Account</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div className="grid-settings-2col">
             {[
               { label: 'Name', value: user?.name },
               { label: 'Email', value: user?.email },
@@ -30,7 +30,7 @@ const SettingsPage = () => {
             ].map(({ label, value }) => (
               <div key={label} style={{ background: 'var(--bg-elevated)', padding: '16px', borderRadius: 'var(--radius-md)' }}>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</div>
-                <div style={{ fontSize: '0.92rem', fontWeight: '500' }}>{value}</div>
+                <div style={{ fontSize: '0.92rem', fontWeight: '500', wordBreak: 'break-all' }}>{value}</div>
               </div>
             ))}
           </div>
@@ -50,7 +50,7 @@ const SettingsPage = () => {
               { label: 'Auth', value: 'JWT + bcrypt' },
               { label: 'Frontend', value: 'React + Vite' },
             ].map(({ label, value }) => (
-              <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 16px', background: 'var(--bg-elevated)', borderRadius: 'var(--radius-md)' }}>
+              <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', background: 'var(--bg-elevated)', borderRadius: 'var(--radius-md)', flexWrap: 'wrap', gap: '8px' }}>
                 <span style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>{label}</span>
                 <span style={{ fontSize: '0.88rem', fontWeight: '500', fontFamily: 'monospace', color: 'var(--accent-primary)' }}>{value}</span>
               </div>

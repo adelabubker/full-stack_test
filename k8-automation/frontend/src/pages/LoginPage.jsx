@@ -39,7 +39,7 @@ const LoginPage = () => {
     borderRadius: '10px', color: '#ffffff',
     fontFamily: 'Inter, sans-serif', fontSize: '0.95rem',
     outline: 'none', transition: 'border-color 0.2s',
-    caretColor: '#ffeb3b', // Bright yellow cursor for maximum visibility
+    caretColor: '#ffeb3b',
   };
 
   return (
@@ -61,7 +61,7 @@ const LoginPage = () => {
         {/* Card */}
         <div style={{
           background: '#111111', border: '1px solid rgba(201,168,76,0.2)',
-          borderRadius: '20px', padding: '48px 40px',
+          borderRadius: '20px', padding: 'clamp(28px, 8vw, 48px) clamp(20px, 6vw, 40px)',
           boxShadow: '0 24px 80px rgba(0,0,0,0.6), 0 0 40px rgba(201,168,76,0.04)',
         }}>
           {/* Logo */}
@@ -80,14 +80,8 @@ const LoginPage = () => {
               <div style={{ position: 'relative' }}>
                 <Mail size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
                 <input ref={emailRef} type="email" style={inputStyle} placeholder="you@ex.com" defaultValue=""
-                  onFocus={e => {
-                    e.target.style.borderColor = 'rgba(201,168,76,0.6)';
-                    e.target.style.boxShadow = '0 0 0 3px rgba(201,168,76,0.15)';
-                  }}
-                  onBlur={e => {
-                    e.target.style.borderColor = 'rgba(255,255,255,0.15)';
-                    e.target.style.boxShadow = 'none';
-                  }}
+                  onFocus={e => { e.target.style.borderColor = 'rgba(201,168,76,0.6)'; e.target.style.boxShadow = '0 0 0 3px rgba(201,168,76,0.15)'; }}
+                  onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.15)'; e.target.style.boxShadow = 'none'; }}
                 />
               </div>
             </div>
@@ -99,23 +93,9 @@ const LoginPage = () => {
                 <Lock size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
                 <input ref={passwordRef} type={showPassword ? 'text' : 'password'} style={{ ...inputStyle, paddingRight: '44px' }}
                   placeholder="Enter your password" defaultValue=""
-                  onFocus={e => {
-                    e.target.style.borderColor = 'rgba(201,168,76,0.6)';
-                    e.target.style.boxShadow = '0 0 0 3px rgba(201,168,76,0.15)';
-                  }}
-                  onBlur={e => {
-                    e.target.style.borderColor = 'rgba(255,255,255,0.15)';
-                    e.target.style.boxShadow = 'none';
-                  }}
+                  onFocus={e => { e.target.style.borderColor = 'rgba(201,168,76,0.6)'; e.target.style.boxShadow = '0 0 0 3px rgba(201,168,76,0.15)'; }}
+                  onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.15)'; e.target.style.boxShadow = 'none'; }}
                 />
-                <button type="button" onClick={() => setShowPassword(!showPassword)}
-                  style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', display: 'flex' }}>
-                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                </button>
-                <button type="button" onClick={() => setShowPassword(!showPassword)}
-                  style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', display: 'flex' }}>
-                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                </button>
                 <button type="button" onClick={() => setShowPassword(!showPassword)}
                   style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', display: 'flex' }}>
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}

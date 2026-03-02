@@ -172,3 +172,119 @@
 [2026-03-01T19:35:55.568Z] [INFO] URL: http://localhost:5000/api/health
 [2026-03-01T19:35:55.579Z] [INFO] MongoDB connected successfully to localhost:27017
 [2026-03-01T19:35:55.580Z] [INFO] Database: k8automation
+[2026-03-01T23:30:04.080Z] [INFO] K8 Automation API running on port 5000
+[2026-03-01T23:30:04.081Z] [INFO] Environment: development
+[2026-03-01T23:30:04.082Z] [INFO] URL: http://localhost:5000/api/health
+[2026-03-01T23:30:04.095Z] [INFO] MongoDB connected successfully to localhost:27017
+[2026-03-01T23:30:04.096Z] [INFO] Database: k8automation
+[2026-03-01T23:34:22.018Z] [DEBUG] JWT token generated successfully
+[2026-03-01T23:34:22.027Z] [INFO] User logged in: admin@k8automation.io
+[2026-03-01T23:35:11.575Z] [INFO] User logged out: admin@k8automation.io
+[2026-03-02T02:33:26.116Z] [INFO] K8 Automation API running on port 5000
+[2026-03-02T02:33:26.118Z] [INFO] Environment: development
+[2026-03-02T02:33:26.118Z] [INFO] URL: http://localhost:5000/api/health
+[2026-03-02T02:33:26.131Z] [INFO] MongoDB connected successfully to localhost:27017
+[2026-03-02T02:33:26.131Z] [INFO] Database: k8automation
+[2026-03-02T02:58:58.680Z] [INFO] K8 Automation API running on port 5000
+[2026-03-02T02:58:58.681Z] [INFO] Environment: development
+[2026-03-02T02:58:58.681Z] [INFO] URL: http://localhost:5000/api/health
+[2026-03-02T02:58:58.697Z] [INFO] MongoDB connected successfully to localhost:27017
+[2026-03-02T02:58:58.698Z] [INFO] Database: k8automation
+[2026-03-02T02:59:29.092Z] [DEBUG] JWT token generated successfully
+[2026-03-02T02:59:29.093Z] [ERROR] Encryption failed: Error: ENCRYPTION_KEY must be a 64-character hex string (32 bytes)
+    at encrypt (C:\Users\kosa\Desktop\k8\backend\utils\cryptoUtils.js:15:13)
+    at login (C:\Users\kosa\Desktop\k8\backend\controllers\authController.js:102:18)
+[2026-03-02T02:59:29.093Z] [ERROR] Error in login controller: Error: ENCRYPTION_KEY must be a 64-character hex string (32 bytes)
+    at encrypt (C:\Users\kosa\Desktop\k8\backend\utils\cryptoUtils.js:15:13)
+    at login (C:\Users\kosa\Desktop\k8\backend\controllers\authController.js:102:18)
+[2026-03-02T02:59:29.094Z] [ERROR] [500] ENCRYPTION_KEY must be a 64-character hex string (32 bytes): Error: ENCRYPTION_KEY must be a 64-character hex string (32 bytes)
+    at encrypt (C:\Users\kosa\Desktop\k8\backend\utils\cryptoUtils.js:15:13)
+    at login (C:\Users\kosa\Desktop\k8\backend\controllers\authController.js:102:18)
+[2026-03-02T02:59:40.883Z] [INFO] SIGINT signal received: closing HTTP server
+[2026-03-02T03:00:41.707Z] [INFO] K8 Automation API running on port 5000
+[2026-03-02T03:00:41.708Z] [INFO] Environment: development
+[2026-03-02T03:00:41.708Z] [INFO] URL: http://localhost:5000/api/health
+[2026-03-02T03:00:41.724Z] [INFO] MongoDB connected successfully to localhost:27017
+[2026-03-02T03:00:41.725Z] [INFO] Database: k8automation
+[2026-03-02T03:00:43.970Z] [DEBUG] JWT token generated successfully
+[2026-03-02T03:00:43.971Z] [ERROR] Encryption failed: Error: ENCRYPTION_KEY must be a 64-character hex string (32 bytes)
+    at encrypt (C:\Users\kosa\Desktop\k8\backend\utils\cryptoUtils.js:15:13)
+    at login (C:\Users\kosa\Desktop\k8\backend\controllers\authController.js:102:18)
+[2026-03-02T03:00:43.972Z] [ERROR] Error in login controller: Error: ENCRYPTION_KEY must be a 64-character hex string (32 bytes)
+    at encrypt (C:\Users\kosa\Desktop\k8\backend\utils\cryptoUtils.js:15:13)
+    at login (C:\Users\kosa\Desktop\k8\backend\controllers\authController.js:102:18)
+[2026-03-02T03:00:43.973Z] [ERROR] [500] ENCRYPTION_KEY must be a 64-character hex string (32 bytes): Error: ENCRYPTION_KEY must be a 64-character hex string (32 bytes)
+    at encrypt (C:\Users\kosa\Desktop\k8\backend\utils\cryptoUtils.js:15:13)
+    at login (C:\Users\kosa\Desktop\k8\backend\controllers\authController.js:102:18)
+[2026-03-02T03:00:51.932Z] [INFO] K8 Automation API running on port 5000
+[2026-03-02T03:00:51.933Z] [INFO] Environment: development
+[2026-03-02T03:00:51.934Z] [INFO] URL: http://localhost:5000/api/health
+[2026-03-02T03:00:51.944Z] [INFO] MongoDB connected successfully to localhost:27017
+[2026-03-02T03:00:51.944Z] [INFO] Database: k8automation
+[2026-03-02T03:00:53.437Z] [INFO] K8 Automation API running on port 5000
+[2026-03-02T03:00:53.438Z] [INFO] Environment: development
+[2026-03-02T03:00:53.438Z] [INFO] URL: http://localhost:5000/api/health
+[2026-03-02T03:00:53.447Z] [INFO] MongoDB connected successfully to localhost:27017
+[2026-03-02T03:00:53.449Z] [INFO] Database: k8automation
+[2026-03-02T03:01:01.851Z] [INFO] K8 Automation API running on port 5000
+[2026-03-02T03:01:01.853Z] [INFO] Environment: development
+[2026-03-02T03:01:01.853Z] [INFO] URL: http://localhost:5000/api/health
+[2026-03-02T03:01:01.868Z] [INFO] MongoDB connected successfully to localhost:27017
+[2026-03-02T03:01:01.868Z] [INFO] Database: k8automation
+[2026-03-02T03:01:16.259Z] [INFO] K8 Automation API running on port 5000
+[2026-03-02T03:01:16.260Z] [INFO] Environment: development
+[2026-03-02T03:01:16.261Z] [INFO] URL: http://localhost:5000/api/health
+[2026-03-02T03:01:16.274Z] [INFO] MongoDB connected successfully to localhost:27017
+[2026-03-02T03:01:16.275Z] [INFO] Database: k8automation
+[2026-03-02T03:01:46.689Z] [DEBUG] JWT token generated successfully
+[2026-03-02T03:01:46.698Z] [INFO] User logged in: admin@k8automation.io
+[2026-03-02T14:49:53.655Z] [DEBUG] JWT verification error: "jwt expired"
+[2026-03-02T14:49:53.665Z] [DEBUG] JWT verification error: "jwt expired"
+[2026-03-02T14:52:42.245Z] [DEBUG] JWT token generated successfully
+[2026-03-02T14:52:42.251Z] [INFO] User logged in: admin@k8automation.io
+[2026-03-02T14:59:27.154Z] [DEBUG] JWT token generated successfully
+[2026-03-02T14:59:27.159Z] [INFO] User logged in: admin@k8automation.io
+[2026-03-02T15:04:14.349Z] [INFO] User logged out: admin@k8automation.io
+[2026-03-02T15:04:25.642Z] [DEBUG] JWT token generated successfully
+[2026-03-02T15:04:25.647Z] [INFO] User logged in: admin@k8automation.io
+[2026-03-02T15:12:56.975Z] [ERROR] [500] Service validation failed: description: Description must be at least 10 characters: ValidationError: Service validation failed: description: Description must be at least 10 characters
+    at Document.invalidate (C:\Users\kosa\Desktop\k8\backend\node_modules\mongoose\lib\document.js:3381:32)
+    at C:\Users\kosa\Desktop\k8\backend\node_modules\mongoose\lib\document.js:3142:17
+    at C:\Users\kosa\Desktop\k8\backend\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:84:11)
+[2026-03-02T16:46:33.750Z] [INFO] K8 Automation API running on port 5000
+[2026-03-02T16:46:33.751Z] [INFO] Environment: development
+[2026-03-02T16:46:33.752Z] [INFO] URL: http://localhost:5000/api/health
+[2026-03-02T16:46:33.763Z] [INFO] MongoDB connected successfully to localhost:27017
+[2026-03-02T16:46:33.763Z] [INFO] Database: k8automation
+[2026-03-02T16:46:36.295Z] [DEBUG] JWT token generated successfully
+[2026-03-02T16:46:36.303Z] [INFO] User logged in: admin@k8automation.io
+[2026-03-02T16:46:46.579Z] [ERROR] [500] Service validation failed: description: Description must be at least 10 characters: ValidationError: Service validation failed: description: Description must be at least 10 characters
+    at Document.invalidate (C:\Users\kosa\Desktop\k8\backend\node_modules\mongoose\lib\document.js:3381:32)
+    at C:\Users\kosa\Desktop\k8\backend\node_modules\mongoose\lib\document.js:3142:17
+    at C:\Users\kosa\Desktop\k8\backend\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:84:11)
+[2026-03-02T16:46:56.014Z] [ERROR] [500] Service validation failed: description: Description must be at least 10 characters: ValidationError: Service validation failed: description: Description must be at least 10 characters
+    at Document.invalidate (C:\Users\kosa\Desktop\k8\backend\node_modules\mongoose\lib\document.js:3381:32)
+    at C:\Users\kosa\Desktop\k8\backend\node_modules\mongoose\lib\document.js:3142:17
+    at C:\Users\kosa\Desktop\k8\backend\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:84:11)
+[2026-03-02T16:55:57.491Z] [INFO] User logged out: admin@k8automation.io
+[2026-03-02T17:44:32.104Z] [INFO] K8 Automation API running on port 5000
+[2026-03-02T17:44:32.105Z] [INFO] Environment: development
+[2026-03-02T17:44:32.105Z] [INFO] URL: http://localhost:5000/api/health
+[2026-03-02T17:44:32.116Z] [INFO] MongoDB connected successfully to localhost:27017
+[2026-03-02T17:44:32.117Z] [INFO] Database: k8automation
+[2026-03-02T17:45:24.790Z] [DEBUG] JWT token generated successfully
+[2026-03-02T17:45:24.798Z] [INFO] User logged in: admin@k8automation.io
+[2026-03-02T17:47:41.840Z] [INFO] User logged out: admin@k8automation.io
+[2026-03-02T18:16:55.890Z] [INFO] K8 Automation API running on port 5000
+[2026-03-02T18:16:55.892Z] [INFO] Environment: development
+[2026-03-02T18:16:55.892Z] [INFO] URL: http://localhost:5000/api/health
+[2026-03-02T18:16:55.906Z] [INFO] MongoDB connected successfully to localhost:27017
+[2026-03-02T18:16:55.907Z] [INFO] Database: k8automation
+[2026-03-02T18:17:13.174Z] [DEBUG] JWT token generated successfully
+[2026-03-02T18:17:13.178Z] [INFO] New user registered: test@gmail.com
+[2026-03-02T18:17:41.975Z] [INFO] User logged out: test@gmail.com
+[2026-03-02T18:17:52.805Z] [DEBUG] JWT token generated successfully
+[2026-03-02T18:17:52.808Z] [INFO] User logged in: admin@k8automation.io

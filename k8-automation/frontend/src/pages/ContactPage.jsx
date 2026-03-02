@@ -24,7 +24,6 @@ const FAQS = [
 ];
 
 const ContactPage = () => {
-  // Form State
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -50,30 +49,19 @@ const ContactPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Inline Validation
     const error = validateForm();
     if (error) return toast.error(error);
 
     setSending(true);
-
     try {
       const response = await fetch('https://adelhikosa.app.n8n.cloud/webhook/contact-form', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...form,
-          subject: "New Contact Request"
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, subject: "New Contact Request" }),
       });
-
       const result = await response.json();
-
       if (result.success === true) {
         toast.success('Message sent! We\'ll respond within 24 hours.');
-        // Reset form after success
         setForm({ name: '', email: '', phone: '', company: '', service: '', message: '' });
       } else {
         toast.error(result.message || 'Failed to send message. Please try again.');
@@ -114,149 +102,129 @@ const ContactPage = () => {
 
       {/* ══ CONTACT FORM + SIDEBAR ════════════════════════════════════ */}
       <section style={{ padding: '80px 5%' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '32px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }} className="grid-contact">
 
           {/* Left: Form */}
-          <div style={{ background: 'var(--bg-card)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 'var(--radius-lg)', padding: '40px' }}>
+          <div style={{ background: 'var(--bg-card)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 'var(--radius-lg)', padding: 'clamp(24px, 5vw, 40px)' }}>
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', fontWeight: '700', marginBottom: '32px' }}>
               Send Us a Message
             </h2>
             <form onSubmit={handleSubmit}>
-  {/* Row 1: Name + Email */}
-  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-    <div>
-      <label style={{ fontSize: '0.82rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '8px', display: 'block' }}>
-        Your Name *
-      </label>
-      <input
-        style={inputStyle}
-        placeholder="your name"
-        value={form.name}
-        onChange={(e) => setForm({ ...form, name: e.target.value })}
-        onFocus={e => {
-          e.target.style.borderColor = 'rgba(201,168,76,0.6)';
-          e.target.style.boxShadow = '0 0 0 3px rgba(201,168,76,0.15)';
-        }}
-        onBlur={e => {
-          e.target.style.borderColor = 'rgba(255,255,255,0.1)';
-          e.target.style.boxShadow = 'none';
-        }}
-      />
-    </div>
+              {/* Row 1: Name + Email */}
+              <div className="form-row-2col">
+                <div>
+                  <label style={{ fontSize: '0.82rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '8px', display: 'block' }}>
+                    Your Name *
+                  </label>
+                  <input
+                    style={inputStyle}
+                    placeholder="your name"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    onFocus={e => { e.target.style.borderColor = 'rgba(201,168,76,0.6)'; e.target.style.boxShadow = '0 0 0 3px rgba(201,168,76,0.15)'; }}
+                    onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.1)'; e.target.style.boxShadow = 'none'; }}
+                  />
+                </div>
+                <div>
+                  <label style={{ fontSize: '0.82rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '8px', display: 'block' }}>
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    style={inputStyle}
+                    placeholder="youemail@example.com"
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    onFocus={e => { e.target.style.borderColor = 'rgba(201,168,76,0.6)'; e.target.style.boxShadow = '0 0 0 3px rgba(201,168,76,0.15)'; }}
+                    onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.1)'; e.target.style.boxShadow = 'none'; }}
+                  />
+                </div>
+              </div>
 
-    <div>
-      <label style={{ fontSize: '0.82rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '8px', display: 'block' }}>
-        Email Address *
-      </label>
-      <input
-        type="email"
-        style={inputStyle}
-        placeholder="youemail@example.com"
-        value={form.email}
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-        onFocus={e => {
-          e.target.style.borderColor = 'rgba(201,168,76,0.6)';
-          e.target.style.boxShadow = '0 0 0 3px rgba(201,168,76,0.15)';
-        }}
-        onBlur={e => {
-          e.target.style.borderColor = 'rgba(255,255,255,0.1)';
-          e.target.style.boxShadow = 'none';
-        }}
-      />
-    </div>
-  </div>
+              {/* Row 2: Phone + Company */}
+              <div className="form-row-2col">
+                <div>
+                  <label style={{ fontSize: '0.82rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '8px', display: 'block' }}>
+                    Phone Number
+                  </label>
+                  <input
+                    style={inputStyle}
+                    placeholder="+962 78 0000000"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <label style={{ fontSize: '0.82rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '8px', display: 'block' }}>
+                    Company Name
+                  </label>
+                  <input
+                    style={inputStyle}
+                    placeholder="your company"
+                    value={form.company}
+                    onChange={(e) => setForm({ ...form, company: e.target.value })}
+                  />
+                </div>
+              </div>
 
-  {/* Row 2: Phone + Company */}
-  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-    <div>
-      <label style={{ fontSize: '0.82rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '8px', display: 'block' }}>
-        Phone Number
-      </label>
-      <input
-        style={inputStyle}
-        placeholder="+962 78 0000000"
-        value={form.phone}
-        onChange={(e) => setForm({ ...form, phone: e.target.value })}
-      />
-    </div>
+              {/* Service */}
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ fontSize: '0.82rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '8px', display: 'block' }}>
+                  Service Interested In *
+                </label>
+                <select
+                  style={{
+                    ...inputStyle,
+                    appearance: 'none',
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23a0a0a0' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 14px center',
+                    backgroundSize: '20px',
+                    cursor: 'pointer',
+                  }}
+                  value={form.service}
+                  onChange={(e) => setForm({ ...form, service: e.target.value })}
+                >
+                  <option value="">Select a service...</option>
+                  <option value="workflow">Workflow Automation</option>
+                  <option value="integration">System Integration</option>
+                  <option value="ai">AI Automation</option>
+                  <option value="consulting">Automation Consulting</option>
+                  <option value="analytics">AI-Powered Analytics</option>
+                  <option value="optimization">Process Optimization</option>
+                </select>
+              </div>
 
-    <div>
-      <label style={{ fontSize: '0.82rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '8px', display: 'block' }}>
-        Company Name
-      </label>
-      <input
-        style={inputStyle}
-        placeholder="your company"
-        value={form.company}
-        onChange={(e) => setForm({ ...form, company: e.target.value })}
-      />
-    </div>
-  </div>
+              {/* Message */}
+              <div style={{ marginBottom: '28px' }}>
+                <label style={{ fontSize: '0.82rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '8px', display: 'block' }}>
+                  Project Details *
+                </label>
+                <textarea
+                  rows={5}
+                  style={{ ...inputStyle, resize: 'vertical', minHeight: '120px' }}
+                  placeholder="Tell us about your automation needs, goals, and any specific requirements..."
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                />
+              </div>
 
-  {/* Service */}
-  <div style={{ marginBottom: '16px' }}>
-    <label style={{ fontSize: '0.82rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '8px', display: 'block' }}>
-      Service Interested In *
-    </label>
-    <select
-      style={{
-        ...inputStyle,
-        appearance: 'none',
-        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23a0a0a0' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E")`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'right 14px center',
-        backgroundSize: '20px',
-        cursor: 'pointer',
-      }}
-      value={form.service}
-      onChange={(e) => setForm({ ...form, service: e.target.value })}
-    >
-      <option value="">Select a service...</option>
-      <option value="workflow">Workflow Automation</option>
-      <option value="integration">System Integration</option>
-      <option value="ai">AI Automation</option>
-      <option value="consulting">Automation Consulting</option>
-      <option value="analytics">AI-Powered Analytics</option>
-      <option value="optimization">Process Optimization</option>
-    </select>
-  </div>
-
-  {/* Message */}
-  <div style={{ marginBottom: '28px' }}>
-    <label style={{ fontSize: '0.82rem', fontWeight: '600', color: 'var(--text-secondary)', marginBottom: '8px', display: 'block' }}>
-      Project Details *
-    </label>
-    <textarea
-      rows={5}
-      style={{ ...inputStyle, resize: 'vertical', minHeight: '120px' }}
-      placeholder="Tell us about your automation needs, goals, and any specific requirements..."
-      value={form.message}
-      onChange={(e) => setForm({ ...form, message: e.target.value })}
-    />
-  </div>
-
-  {/* Submit */}
-  <button
-    type="submit"
-    disabled={sending}
-    style={{
-      width: '100%',
-      padding: '16px',
-      background: 'var(--gold)',
-      color: '#0a0a0a',
-      border: 'none',
-      borderRadius: '50px',
-      fontWeight: '700',
-      fontSize: '0.9rem',
-      letterSpacing: '0.1em',
-      cursor: sending ? 'not-allowed' : 'pointer',
-      opacity: sending ? 0.7 : 1,
-      textTransform: 'uppercase',
-    }}
-  >
-    {sending ? 'Sending...' : 'SEND MESSAGE'}
-  </button>
-</form>
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={sending}
+                style={{
+                  width: '100%', padding: '16px',
+                  background: 'var(--gold)', color: '#0a0a0a',
+                  border: 'none', borderRadius: '50px',
+                  fontWeight: '700', fontSize: '0.9rem',
+                  letterSpacing: '0.1em', cursor: sending ? 'not-allowed' : 'pointer',
+                  opacity: sending ? 0.7 : 1, textTransform: 'uppercase',
+                }}
+              >
+                {sending ? 'Sending...' : 'SEND MESSAGE'}
+              </button>
+            </form>
           </div>
 
           {/* Right: Contact Info Sidebar */}
@@ -270,7 +238,7 @@ const ContactPage = () => {
               { icon: Mail, label: 'EMAIL US', value: 'k8automation@gmail.com', color: 'var(--gold)' },
               { icon: Phone, label: 'CALL US', value: '+962 78 123 4567', color: 'var(--gold)' },
               { icon: MapPin, label: 'VISIT US', value: 'Mecca Street, Building No. 2208, Amman', color: 'var(--gold)' },
-              { icon: Clock, label: 'BUSINESS HOURS', value: 'Sunday to Thursday: 9:00 AM to 6:00 PM Friday and Saturday: Closed', color: 'var(--gold)' },
+              { icon: Clock, label: 'BUSINESS HOURS', value: 'Sunday to Thursday: 9:00 AM to 6:00 PM\nFriday and Saturday: Closed', color: 'var(--gold)' },
             ].map(({ icon: Icon, label, value, color }) => (
               <div key={label} style={{
                 background: 'var(--bg-card)', border: '1px solid rgba(255,255,255,0.07)',
@@ -336,8 +304,8 @@ const ContactPage = () => {
                 style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '22px 24px', cursor: 'pointer', color: openFaq === i ? 'var(--gold)' : 'var(--text-primary)', fontWeight: openFaq === i ? '600' : '400', fontSize: '1rem' }}
                 onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
               >
-                <span>{faq.q}</span>
-                <div style={{ color: openFaq === i ? 'var(--gold)' : 'var(--text-muted)', flexShrink: 0, marginLeft: '16px' }}>
+                <span style={{ paddingRight: '16px' }}>{faq.q}</span>
+                <div style={{ color: openFaq === i ? 'var(--gold)' : 'var(--text-muted)', flexShrink: 0 }}>
                   {openFaq === i ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </div>
               </div>

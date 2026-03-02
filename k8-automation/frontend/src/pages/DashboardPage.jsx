@@ -70,7 +70,7 @@ const DashboardPage = () => {
       <div style={{ animation: 'fadeIn 0.4s ease' }}>
         {/* Header */}
         <div style={{ marginBottom: '36px' }}>
-          <h1 style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '8px' }}>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.8rem)', fontWeight: '800', marginBottom: '8px' }}>
             Welcome back, <span style={{ color: 'var(--accent-primary)' }}>{user?.name?.split(' ')[0]}</span> 👋
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
@@ -79,15 +79,15 @@ const DashboardPage = () => {
         </div>
 
         {/* Stats Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginBottom: '36px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '20px', marginBottom: '36px' }}>
           <StatCard icon={Zap} label="Total Services" value={stats.services} color="var(--accent-primary)"  />
           {isFullAdmin && <StatCard icon={Users} label="Total Users" value={stats.users} color="#a78bfa"  />}
           <StatCard icon={Activity} label="Active Workflows" value="24" color="#60a5fa" />
           <StatCard icon={Clock} label="Hours Saved (mo.)" value="480h" color="#f59e0b" />
         </div>
 
-        {/* Two columns */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+        {/* Two panels — responsive */}
+        <div className="grid-dashboard-panels">
           {/* Recent Services */}
           <div style={{
             background: 'var(--bg-card)', border: '1px solid var(--border-subtle)',
@@ -135,10 +135,9 @@ const DashboardPage = () => {
                         {service.title}
                       </div>
                       <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '2px' }}>
-                        {service.location}
+                        {service.category}
                       </div>
                     </div>
-                    <span className={`badge badge-${service.location}`}>{service.location}</span>
                   </div>
                 ))}
               </div>
@@ -174,11 +173,11 @@ const DashboardPage = () => {
                     }}>
                       <Icon size={16} style={{ color }} />
                     </div>
-                    <div>
+                    <div style={{ flex: 1 }}>
                       <div style={{ fontSize: '0.9rem', fontWeight: '600' }}>{label}</div>
                       <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '2px' }}>{desc}</div>
                     </div>
-                    <ArrowRight size={14} style={{ marginLeft: 'auto', color: 'var(--text-muted)' }} />
+                    <ArrowRight size={14} style={{ marginLeft: 'auto', color: 'var(--text-muted)', flexShrink: 0 }} />
                   </div>
                 </Link>
               ))}

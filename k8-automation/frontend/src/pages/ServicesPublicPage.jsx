@@ -31,13 +31,8 @@ const ServicesPublicPage = () => {
     const fetchServices = async () => {
       setLoading(true);
       try {
-        const params = {
-          page,
-          limit: 6,
-          active: true
-        };
+        const params = { page, limit: 6, active: true };
         if (category !== 'All') params.category = category;
-
         const res = await api.get('/services', { params });
         if (res.data.data.length || category !== 'All' || page > 1) {
           setServices(res.data.data);
@@ -49,7 +44,6 @@ const ServicesPublicPage = () => {
         setLoading(false);
       }
     };
-
     fetchServices();
   }, [category, page]);
 
@@ -65,12 +59,12 @@ const ServicesPublicPage = () => {
       <div style={{ paddingTop: '68px' }}>
 
         {/* Header */}
-        <div style={{ padding: '80px 5% 60px', textAlign: 'center', background: 'var(--bg-void)' }}>
-          <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: '700', marginBottom: '40px' }}>
+        <div style={{ padding: 'clamp(48px, 8vw, 80px) 5% clamp(32px, 6vw, 60px)', textAlign: 'center', background: 'var(--bg-void)' }}>
+          <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.8rem, 4vw, 3rem)', fontWeight: '700', marginBottom: '40px' }}>
             Our Automation Services
           </h1>
 
-          {/* Search bar — exact match to screenshot */}
+          {/* Search bar */}
           <div style={{ position: 'relative', maxWidth: '560px', margin: '0 auto 28px' }}>
             <Search size={18} style={{ position: 'absolute', left: '18px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
             <input
@@ -90,23 +84,19 @@ const ServicesPublicPage = () => {
             />
           </div>
 
-          {/* Category filter pills — matches screenshot */}
+          {/* Category filter pills */}
           <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
             {CATEGORIES.map(cat => (
               <button
                 key={cat}
                 onClick={() => setCategory(cat)}
                 style={{
-                  padding: '10px 22px',
-                  borderRadius: '50px',
-                  border: '2px solid',
+                  padding: '10px 22px', borderRadius: '50px', border: '2px solid',
                   borderColor: category === cat ? 'var(--gold)' : 'rgba(255,255,255,0.15)',
                   background: category === cat ? 'var(--gold)' : 'transparent',
                   color: category === cat ? '#0a0a0a' : 'var(--text-secondary)',
-                  fontFamily: 'var(--font-body)',
-                  fontWeight: '600', fontSize: '0.88rem',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
+                  fontFamily: 'var(--font-body)', fontWeight: '600', fontSize: '0.88rem',
+                  cursor: 'pointer', transition: 'all 0.2s ease',
                 }}
               >
                 {cat}
@@ -116,7 +106,7 @@ const ServicesPublicPage = () => {
         </div>
 
         {/* Services Grid */}
-        <div style={{ padding: '0 5% 100px', maxWidth: '1280px', margin: '0 auto' }}>
+        <div style={{ padding: '0 5% clamp(60px, 10vw, 100px)', maxWidth: '1280px', margin: '0 auto' }}>
           {loading ? (
             <div style={{ display: 'flex', justifyContent: 'center', padding: '100px 0' }}>
               <div className="spinner" />
@@ -128,80 +118,81 @@ const ServicesPublicPage = () => {
             </div>
           ) : (
             <>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
-              {filtered.map((s, i) => {
-                const Icon = iconMap[s.icon] || Zap;
-                return (
-                  <div key={s._id}
-                    style={{
-                      background: s.featured ? 'linear-gradient(145deg, #161408, #111)' : 'var(--bg-card)',
-                      border: `1px solid ${s.featured ? 'var(--gold-border-strong)' : 'rgba(255,255,255,0.07)'}`,
-                      borderRadius: 'var(--radius-lg)', padding: '32px 28px',
-                      position: 'relative', transition: 'all 0.3s ease',
-                      animation: `fadeInUp 0.5s ease ${i * 0.07}s both`,
-                    }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--gold-border-strong)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(201,168,76,0.12)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = s.featured ? 'var(--gold-border-strong)' : 'rgba(255,255,255,0.07)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
-                  >
-                    {s.featured && (
-                      <div style={{
-                        position: 'absolute', top: '16px', right: '16px',
-                        background: 'var(--gold)', color: '#0a0a0a',
-                        padding: '4px 14px', borderRadius: '50px',
-                        fontSize: '0.72rem', fontWeight: '700', letterSpacing: '0.05em',
-                      }}>
-                        Most Popular
-                      </div>
-                    )}
-
-                    <h3 style={{
-                      fontFamily: 'var(--font-heading)',
-                      fontSize: '1.3rem', fontWeight: '700', marginBottom: '12px',
-                      color: s.featured ? 'var(--gold)' : 'var(--text-primary)',
-                    }}>
-                      {s.title}
-                    </h3>
-                    <p style={{
-                      color: s.featured ? 'rgba(201,168,76,0.75)' : 'var(--text-secondary)',
-                      fontSize: '0.9rem', lineHeight: '1.65', marginBottom: '28px',
-                    }}>
-                      {s.description}
-                    </p>
-
-                    <button
-                      className="btn btn-gold"
-                      style={{ width: '100%', justifyContent: 'center', borderRadius: '50px', fontSize: '0.82rem', letterSpacing: '0.08em' }}
-                      onClick={() => navigate('/contact-page')}
+              <div className="grid-responsive">
+                {filtered.map((s, i) => {
+                  const Icon = iconMap[s.icon] || Zap;
+                  return (
+                    <div key={s._id}
+                      style={{
+                        background: s.featured ? 'linear-gradient(145deg, #161408, #111)' : 'var(--bg-card)',
+                        border: `1px solid ${s.featured ? 'var(--gold-border-strong)' : 'rgba(255,255,255,0.07)'}`,
+                        borderRadius: 'var(--radius-lg)', padding: 'clamp(20px, 4vw, 32px) clamp(18px, 4vw, 28px)',
+                        position: 'relative', transition: 'all 0.3s ease',
+                        animation: `fadeInUp 0.5s ease ${i * 0.07}s both`,
+                      }}
+                      onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--gold-border-strong)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(201,168,76,0.12)'; }}
+                      onMouseLeave={e => { e.currentTarget.style.borderColor = s.featured ? 'var(--gold-border-strong)' : 'rgba(255,255,255,0.07)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
                     >
-                      GET THE SERVICE
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
+                      {s.featured && (
+                        <div style={{
+                          position: 'absolute', top: '16px', right: '16px',
+                          background: 'var(--gold)', color: '#0a0a0a',
+                          padding: '4px 14px', borderRadius: '50px',
+                          fontSize: '0.72rem', fontWeight: '700', letterSpacing: '0.05em',
+                        }}>
+                          Most Popular
+                        </div>
+                      )}
 
-            {/* Pagination Controls */}
-            {pagination.pages > 1 && (
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '50px' }}>
-                <button
-                  className="btn btn-secondary btn-sm"
-                  disabled={page === 1}
-                  onClick={() => setPage(prev => prev - 1)}
-                >
-                  Previous
-                </button>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                  Page {page} of {pagination.pages}
-                </div>
-                <button
-                  className="btn btn-secondary btn-sm"
-                  disabled={page === pagination.pages}
-                  onClick={() => setPage(prev => prev + 1)}
-                >
-                  Next
-                </button>
+                      <h3 style={{
+                        fontFamily: 'var(--font-heading)',
+                        fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)', fontWeight: '700', marginBottom: '12px',
+                        color: s.featured ? 'var(--gold)' : 'var(--text-primary)',
+                        paddingRight: s.featured ? '90px' : '0',
+                      }}>
+                        {s.title}
+                      </h3>
+                      <p style={{
+                        color: s.featured ? 'rgba(201,168,76,0.75)' : 'var(--text-secondary)',
+                        fontSize: '0.9rem', lineHeight: '1.65', marginBottom: '28px',
+                      }}>
+                        {s.description}
+                      </p>
+
+                      <button
+                        className="btn btn-gold"
+                        style={{ width: '100%', justifyContent: 'center', borderRadius: '50px', fontSize: '0.82rem', letterSpacing: '0.08em' }}
+                        onClick={() => navigate('/contact-page')}
+                      >
+                        GET THE SERVICE
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
-            )}
+
+              {/* Pagination Controls */}
+              {pagination.pages > 1 && (
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '50px', flexWrap: 'wrap' }}>
+                  <button
+                    className="btn btn-secondary btn-sm"
+                    disabled={page === 1}
+                    onClick={() => setPage(prev => prev - 1)}
+                  >
+                    Previous
+                  </button>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                    Page {page} of {pagination.pages}
+                  </div>
+                  <button
+                    className="btn btn-secondary btn-sm"
+                    disabled={page === pagination.pages}
+                    onClick={() => setPage(prev => prev + 1)}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
             </>
           )}
         </div>

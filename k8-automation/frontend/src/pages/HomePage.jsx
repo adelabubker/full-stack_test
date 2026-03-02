@@ -33,7 +33,7 @@ const HomePage = () => {
         display: 'flex', alignItems: 'center',
         overflow: 'hidden',
       }}>
-        {/* Background image with dark overlay — exactly like screenshot */}
+        {/* Background image with dark overlay */}
         <div style={{
           position: 'absolute', inset: 0,
           backgroundImage: `url(${heroImg})`,
@@ -46,12 +46,11 @@ const HomePage = () => {
         }} />
 
         {/* Content */}
-        <div style={{ position: 'relative', padding: '120px 5% 80px', maxWidth: '1280px', margin: '0 auto', width: '100%' }}>
+        <div style={{ position: 'relative', padding: 'clamp(80px, 12vw, 120px) 5% 80px', maxWidth: '1280px', margin: '0 auto', width: '100%' }}>
           <div style={{ maxWidth: '620px', animation: 'fadeInUp 0.8s ease forwards' }}>
-            {/* Headline — "Automate. Orchestrate. Scale." like screenshot */}
             <h1 style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(3rem, 7vw, 5.5rem)',
+              fontSize: 'clamp(2.8rem, 7vw, 5.5rem)',
               fontWeight: '700', lineHeight: '1.05',
               marginBottom: '24px',
               color: 'var(--text-primary)',
@@ -60,7 +59,7 @@ const HomePage = () => {
             </h1>
 
             <p style={{
-              fontSize: '1.1rem', color: 'rgba(255,255,255,0.75)',
+              fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', color: 'rgba(255,255,255,0.75)',
               lineHeight: '1.7', marginBottom: '40px', maxWidth: '480px',
             }}>
               Enterprise-grade workflow automation powered by n8n and AI.
@@ -78,17 +77,15 @@ const HomePage = () => {
         </div>
       </section>
 
-     
-
       {/* ══ ABOUT STRIP ══════════════════════════════════════════════════ */}
-      <section style={{ padding: '80px 5%', background: 'var(--bg-deep)', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '32px', alignItems: 'center' }}>
-          <div style={{ gridColumn: 'span 2' }}>
-            <div style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: '700', marginBottom: '14px' }}>
+      <section style={{ padding: 'clamp(48px, 8vw, 80px) 5%', background: 'var(--bg-deep)', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '32px', alignItems: 'start' }}>
+          <div className="about-strip-main">
+            <div style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.4rem, 3vw, 2.4rem)', fontWeight: '700', marginBottom: '14px' }}>
               Why Choose <span style={{ color: 'var(--gold)' }}>K8 Automation</span>?
             </div>
             <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7', maxWidth: '500px' }}>
-              We combine deep technical expertise with practical automation strategy. 
+              We combine deep technical expertise with practical automation strategy.
               Every workflow we build is designed for reliability, security, and scale.
             </p>
           </div>
@@ -109,9 +106,9 @@ const HomePage = () => {
       </section>
 
       {/* ══ CTA ══════════════════════════════════════════════════════════ */}
-      <section style={{ padding: '100px 5%' }}>
+      <section style={{ padding: 'clamp(60px, 10vw, 100px) 5%' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: '700', marginBottom: '16px' }}>
+          <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.8rem, 4vw, 3rem)', fontWeight: '700', marginBottom: '16px' }}>
             Ready to Transform Your Workflow?
           </h2>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '40px', fontSize: '1.05rem' }}>

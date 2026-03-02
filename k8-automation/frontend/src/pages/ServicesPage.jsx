@@ -7,6 +7,11 @@ import { toast } from 'react-hot-toast';
 import api from '../utils/api';
 import { PlusCircle, Edit2, Trash2, Zap, Search, RefreshCw, Code2, Globe, Cpu, Shield, Star, TrendingUp, ToggleRight, ToggleLeft } from 'lucide-react';
 
+const ICON_MAP = {
+  zap: Zap, code2: Code2, globe: Globe, bot: Cpu,
+  workflow: Zap, shield: Shield, star: Star, trending: TrendingUp,
+};
+
 const ServicesPage = () => {
   const { isFullAdmin } = useAuth();
   const [services, setServices] = useState([]);
@@ -46,6 +51,16 @@ const ServicesPage = () => {
     }
   };
 
+  const handleToggleActive = async (service) => {
+    try {
+      const res = await api.put(`/services/${service._id}`, { isActive: !service.isActive });
+      setServices(prev => prev.map(s => s._id === service._id ? res.data.data : s));
+      toast.success('Service visibility updated');
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to update service');
+    }
+  };
+
   const filtered = services.filter(s =>
     s.title.toLowerCase().includes(search.toLowerCase()) ||
     s.description.toLowerCase().includes(search.toLowerCase())
@@ -57,12 +72,12 @@ const ServicesPage = () => {
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <h1 style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '6px' }}>Services</h1>
+            <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.8rem)', fontWeight: '800', marginBottom: '6px' }}>Services</h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               {services.length} service{services.length !== 1 ? 's' : ''} total
             </p>
           </div>
-          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
             <button className="btn btn-secondary btn-sm" onClick={fetchServices}>
               <RefreshCw size={14} /> Refresh
             </button>
@@ -100,14 +115,8 @@ const ServicesPage = () => {
           background: 'var(--bg-card)', border: '1px solid var(--border-subtle)',
           borderRadius: 'var(--radius-lg)', overflow: 'hidden',
         }}>
-          {/* Table Header */}
-          <div style={{
-            display: 'grid', gridTemplateColumns: '2fr 3fr 100px 140px 120px',
-            padding: '14px 24px',
-            background: 'var(--bg-elevated)', borderBottom: '1px solid var(--border-subtle)',
-            fontSize: '0.75rem', fontWeight: '600', color: 'var(--text-muted)',
-            textTransform: 'uppercase', letterSpacing: '0.06em',
-          }}>
+          {/* Table Header — hidden on mobile via CSS */}
+          <div className="responsive-table-header services-table-header">
             <span>Title</span>
             <span>Description</span>
             <span>Active</span>
@@ -132,110 +141,111 @@ const ServicesPage = () => {
               )}
             </div>
           ) : (
-            filtered.map((service, i) => (
-              <div key={service._id} style={{
-                display: 'grid', gridTemplateColumns: '2fr 3fr 120px 140px 120px',
-                padding: '16px 24px', borderBottom: '1px solid var(--border-subtle)',
-                alignItems: 'center', transition: 'background 0.15s ease',
-                animation: `fadeIn 0.3s ease ${i * 0.05}s both`,
-              }}
-                onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-elevated)'}
-                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-              >
-                {/* Title */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div style={{
-                    width: '32px', height: '32px', borderRadius: '8px',
-                    background: 'rgba(0,255,204,0.08)', border: '1px solid rgba(0,255,204,0.15)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                  }}>
-                    {/* Render icon based on service.icon string */}
-                    {(() => {
-                      const ICON_MAP = {
-                        zap: Zap,
-                        code2: Code2,
-                        globe: Globe,
-                        bot: Cpu,
-                        workflow: Zap,
-                        shield: Shield,
-                        star: Star,
-                        trending: TrendingUp,
-                      };
-                      const I = ICON_MAP[service.icon] || Zap;
-                      return <I size={14} style={{ color: 'var(--accent-primary)' }} />;
-                    })()}
+            filtered.map((service, i) => {
+              const ServiceIcon = ICON_MAP[service.icon] || Zap;
+              return (
+                <div key={service._id}
+                  className="responsive-table-row services-table-row"
+                  style={{
+                    borderBottom: '1px solid var(--border-subtle)',
+                    transition: 'background 0.15s ease',
+                    animation: `fadeIn 0.3s ease ${i * 0.05}s both`,
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-elevated)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                >
+                  {/* Title */}
+                  <div>
+                    <div className="mobile-label">Title</div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div style={{
+                        width: '32px', height: '32px', borderRadius: '8px',
+                        background: 'rgba(0,255,204,0.08)', border: '1px solid rgba(0,255,204,0.15)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                      }}>
+                        <ServiceIcon size={14} style={{ color: 'var(--accent-primary)' }} />
+                      </div>
+                      <span style={{ fontWeight: '500', fontSize: '0.9rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {service.title}
+                      </span>
+                    </div>
                   </div>
-                  <span style={{ fontWeight: '500', fontSize: '0.9rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {service.title}
-                  </span>
-                </div>
 
-                {/* Description */}
-                <span style={{
-                  color: 'var(--text-secondary)', fontSize: '0.85rem',
-                  overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-                  paddingRight: '16px',
-                }}>
-                  {service.description}
-                </span>
-
-                {/* Active */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div style={{ fontSize: '0.9rem', color: service.isActive ? 'var(--text-primary)' : 'var(--text-muted)' }}>
-                    {service.isActive ? 'Active' : 'Inactive'}
+                  {/* Description */}
+                  <div>
+                    <div className="mobile-label">Description</div>
+                    <span style={{
+                      color: 'var(--text-secondary)', fontSize: '0.85rem',
+                      overflow: 'hidden', textOverflow: 'ellipsis',
+                      display: '-webkit-box', WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                    }}>
+                      {service.description}
+                    </span>
                   </div>
-                  <button
-                    onClick={async () => {
-                      try {
-                        const res = await api.put(`/services/${service._id}`, { isActive: !service.isActive });
-                        setServices(prev => prev.map(s => s._id === service._id ? res.data.data : s));
-                        toast.success('Service visibility updated');
-                      } catch (err) {
-                        toast.error(err.response?.data?.message || 'Failed to update service');
-                      }
-                    }}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                    title={service.isActive ? 'Deactivate service' : 'Activate service'}
-                  >
-                    {service.isActive ? <ToggleRight size={22} style={{ color: 'var(--accent-primary)' }} /> : <ToggleLeft size={22} style={{ color: 'var(--text-muted)' }} />}
-                  </button>
-                </div>
 
-                {/* Created By */}
-                <span style={{ color: 'var(--text-secondary)', fontSize: '0.82rem' }}>
-                  {service.createdBy?.name || 'Unknown'}
-                </span>
+                  {/* Active */}
+                  <div>
+                    <div className="mobile-label">Status</div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{ fontSize: '0.9rem', color: service.isActive ? 'var(--text-primary)' : 'var(--text-muted)' }}>
+                        {service.isActive ? 'Active' : 'Inactive'}
+                      </div>
+                      <button
+                        onClick={() => handleToggleActive(service)}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        title={service.isActive ? 'Deactivate service' : 'Activate service'}
+                      >
+                        {service.isActive
+                          ? <ToggleRight size={22} style={{ color: 'var(--accent-primary)' }} />
+                          : <ToggleLeft size={22} style={{ color: 'var(--text-muted)' }} />
+                        }
+                      </button>
+                    </div>
+                  </div>
 
-                {/* Actions */}
-                <div style={{ display: 'flex', gap: '8px' }}>
-                  <button
-                    className="btn btn-secondary btn-sm"
-                    onClick={() => navigate(`/dashboard/services/edit/${service._id}`)}
-                    style={{ padding: '6px 12px' }}
-                  >
-                    <Edit2 size={13} />
-                  </button>
-                  {isFullAdmin && (
-                    <button
-                      className="btn btn-danger btn-sm"
-                      onClick={() => handleDelete(service._id, service.title)}
-                      disabled={deleting === service._id}
-                      style={{ padding: '6px 12px' }}
-                    >
-                      {deleting === service._id
-                        ? <div className="spinner" style={{ width: '12px', height: '12px', borderWidth: '2px' }} />
-                        : <Trash2 size={13} />}
-                    </button>
-                  )}
+                  {/* Created By */}
+                  <div>
+                    <div className="mobile-label">Created By</div>
+                    <span style={{ color: 'var(--text-secondary)', fontSize: '0.82rem' }}>
+                      {service.createdBy?.name || 'Unknown'}
+                    </span>
+                  </div>
+
+                  {/* Actions */}
+                  <div>
+                    <div className="mobile-label">Actions</div>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <button
+                        className="btn btn-secondary btn-sm"
+                        onClick={() => navigate(`/dashboard/services/edit/${service._id}`)}
+                        style={{ padding: '6px 12px' }}
+                      >
+                        <Edit2 size={13} />
+                      </button>
+                      {isFullAdmin && (
+                        <button
+                          className="btn btn-danger btn-sm"
+                          onClick={() => handleDelete(service._id, service.title)}
+                          disabled={deleting === service._id}
+                          style={{ padding: '6px 12px' }}
+                        >
+                          {deleting === service._id
+                            ? <div className="spinner" style={{ width: '12px', height: '12px', borderWidth: '2px' }} />
+                            : <Trash2 size={13} />}
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
 
         {/* Pagination Controls */}
         {pagination.pages > 1 && (
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '24px', flexWrap: 'wrap' }}>
             <button
               className="btn btn-secondary btn-sm"
               disabled={page === 1}

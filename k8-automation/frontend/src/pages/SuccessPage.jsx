@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { TrendingUp, Users, Clock, Trophy, CheckCircle, Building, Activity, Megaphone, ShoppingBag, Pill } from 'lucide-react';
+
 // Animated counter component
 const CountUp = ({ target, suffix = '' }) => {
   const [count, setCount] = useState(0);
@@ -33,7 +34,6 @@ const CountUp = ({ target, suffix = '' }) => {
 };
 
 const CLIENT_STORIES = [
-
   {
     company: 'PharmaCare Pharmacy',
     industry: 'Healthcare & Retail',
@@ -49,31 +49,20 @@ const CLIENT_STORIES = [
   },
   {
     company: 'Smart Workflow Suite',
-industry: 'Workflow Automation',
-badge: 'Fully Automated & AI-Powered',
-icon: Activity,
-title: 'PDF & Order Management System',
-description: 'Automates PDF processing, restaurant order management, AI-driven responses, Telegram notifications, and Google Sheets updates for seamless workflow handling.',
-bullets: [
-  'Automatic processing of new PDF files with semantic search capabilities',
-  'AI-powered handling of customer orders and inquiries',
-  'Real-time notifications via Telegram and updates in Google Sheets',
-  'Generation of unique Order IDs and intelligent data routing',
-  'Integration with vector databases and workflow automation tools'
-],
-  },
- 
-  {
-    company: 'MarketPro Agency',
-    industry: 'Marketing',
-    badge: '3x Campaign Output',
-    icon: Megaphone,
-    title: 'Marketing Campaign Automation',
-    description: 'Built multi-channel marketing automation system that tripled campaign output. Automated lead nurturing, follow-ups, and campaign performance reporting.',
-    bullets: ['300% more campaigns launched', 'Automated A/B testing', 'CRM-synced lead scoring'],
+    industry: 'Workflow Automation',
+    badge: 'Fully Automated & AI-Powered',
+    icon: Activity,
+    title: 'PDF & Order Management System',
+    description: 'Automates PDF processing, restaurant order management, AI-driven responses, Telegram notifications, and Google Sheets updates for seamless workflow handling.',
+    bullets: [
+      'Automatic processing of new PDF files with semantic search capabilities',
+      'AI-powered handling of customer orders and inquiries',
+      'Real-time notifications via Telegram and updates in Google Sheets',
+      'Generation of unique Order IDs and intelligent data routing',
+      'Integration with vector databases and workflow automation tools'
+    ],
   },
 ];
-
 
 const SuccessPage = () => {
   const navigate = useNavigate();
@@ -99,7 +88,7 @@ const SuccessPage = () => {
 
       {/* ══ STATS ══════════════════════════════════════════════════════ */}
       <section style={{ padding: '80px 5%', background: 'var(--bg-void)' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }} className="grid-4col">
           {[
             { icon: TrendingUp, number: '16', suffix: '', label: 'Projects Completed' },
             { icon: Users, number: '5', suffix: '', label: 'Happy Clients' },
@@ -126,13 +115,13 @@ const SuccessPage = () => {
             Client Success Stories
           </h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
+          <div className="grid-2col">
             {CLIENT_STORIES.map((story, i) => {
               const Icon = story.icon;
               return (
                 <div key={story.company} style={{
                   background: 'var(--bg-card)', border: '1px solid rgba(255,255,255,0.07)',
-                  borderRadius: 'var(--radius-lg)', padding: '32px',
+                  borderRadius: 'var(--radius-lg)', padding: 'clamp(20px, 4vw, 32px)',
                   animation: `fadeInUp 0.5s ease ${i * 0.1}s both`,
                   transition: 'border-color 0.3s',
                 }}
@@ -140,7 +129,7 @@ const SuccessPage = () => {
                   onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'}
                 >
                   {/* Header */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingBottom: '20px', borderBottom: '1px solid var(--border-subtle)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px', paddingBottom: '20px', borderBottom: '1px solid var(--border-subtle)', flexWrap: 'wrap', gap: '12px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                       <div style={{
                         width: '48px', height: '48px', borderRadius: '10px',
@@ -154,7 +143,7 @@ const SuccessPage = () => {
                         <div style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>{story.industry}</div>
                       </div>
                     </div>
-                    <span className="badge badge-gold">{story.badge}</span>
+                    <span className="badge badge-gold" style={{ whiteSpace: 'nowrap' }}>{story.badge}</span>
                   </div>
 
                   <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.15rem', fontWeight: '700', color: 'var(--gold)', marginBottom: '12px' }}>
@@ -165,8 +154,8 @@ const SuccessPage = () => {
                   </p>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {story.bullets.map(b => (
-                      <div key={b} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <CheckCircle size={16} style={{ color: 'var(--gold)', flexShrink: 0 }} />
+                      <div key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                        <CheckCircle size={16} style={{ color: 'var(--gold)', flexShrink: 0, marginTop: '2px' }} />
                         <span style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>{b}</span>
                       </div>
                     ))}
@@ -178,16 +167,14 @@ const SuccessPage = () => {
         </div>
       </section>
 
-
-
       {/* ══ CTA ════════════════════════════════════════════════════ */}
       <section style={{ padding: '80px 5%' }}>
         <div style={{ maxWidth: '860px', margin: '0 auto' }}>
           <div style={{
             background: 'linear-gradient(145deg, #1a1404, #141414)',
             border: '1px solid var(--gold-border)',
-            borderRadius: 'var(--radius-xl)', padding: '60px 48px', textAlign: 'center',
-            boxShadow: '0 0 60px rgba(201,168,76,0.06)',
+            borderRadius: 'var(--radius-xl)', padding: 'clamp(32px, 6vw, 60px) clamp(24px, 5vw, 48px)',
+            textAlign: 'center', boxShadow: '0 0 60px rgba(201,168,76,0.06)',
           }}>
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.8rem,3.5vw,2.6rem)', fontWeight: '700', marginBottom: '14px' }}>
               Ready to Transform Your Workflow?

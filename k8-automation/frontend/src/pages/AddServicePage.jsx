@@ -8,13 +8,17 @@ import { Save, ArrowLeft, Zap, Code2, Globe, Cpu, Shield, Star, TrendingUp } fro
 
 const ICON_OPTIONS = ['zap', 'code2', 'globe', 'bot', 'workflow', 'shield', 'star', 'trending'];
 
+const ICON_MAP = {
+  zap: Zap, code2: Code2, globe: Globe, bot: Cpu,
+  workflow: Zap, shield: Shield, star: Star, trending: TrendingUp,
+};
+
 const AddServicePage = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     title: '',
     description: '',
     category: 'Workflow',
-    location: 'services',
     icon: 'zap',
   });
   const [loading, setLoading] = useState(false);
@@ -37,6 +41,8 @@ const AddServicePage = () => {
     }
   };
 
+  const PreviewIcon = ICON_MAP[form.icon] || Zap;
+
   return (
     <DashboardLayout>
       <div style={{ animation: 'fadeIn 0.4s ease', maxWidth: '680px' }}>
@@ -49,7 +55,7 @@ const AddServicePage = () => {
           >
             <ArrowLeft size={14} /> Back to Services
           </button>
-          <h1 style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '8px' }}>Add New Service</h1>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.8rem)', fontWeight: '800', marginBottom: '8px' }}>Add New Service</h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
             Create a new service to display on the public website.
           </p>
@@ -58,7 +64,7 @@ const AddServicePage = () => {
         {/* Form Card */}
         <div style={{
           background: 'var(--bg-card)', border: '1px solid var(--border-subtle)',
-          borderRadius: 'var(--radius-lg)', padding: '36px',
+          borderRadius: 'var(--radius-lg)', padding: 'clamp(20px, 5vw, 36px)',
         }}>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             {/* Title */}
@@ -102,21 +108,6 @@ const AddServicePage = () => {
               </select>
             </div>
 
-            {/* Location */}
-            <div className="form-group">
-              <label className="form-label">Display Location *</label>
-              <select
-                className="form-select"
-                value={form.location}
-                onChange={e => setForm({ ...form, location: e.target.value })}
-              >
-                <option value="services">Services Page</option>
-                <option value="home">Home Page</option>
-                <option value="hero">Hero Section</option>
-                <option value="featured">Featured Section</option>
-              </select>
-            </div>
-
             {/* Icon */}
             <div className="form-group">
               <label className="form-label">Icon</label>
@@ -155,22 +146,9 @@ const AddServicePage = () => {
                   background: 'rgba(0,255,204,0.1)', border: '1px solid rgba(0,255,204,0.2)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
-                  {(() => {
-                    const ICON_MAP = {
-                      zap: Zap,
-                      code2: Code2,
-                      globe: Globe,
-                      bot: Cpu,
-                      workflow: Zap,
-                      shield: Shield,
-                      star: Star,
-                      trending: TrendingUp,
-                    };
-                    const I = ICON_MAP[form.icon] || Zap;
-                    return <I size={18} style={{ color: 'var(--accent-primary)' }} />;
-                  })()}
+                  <PreviewIcon size={18} style={{ color: 'var(--accent-primary)' }} />
                 </div>
-                <div>
+                <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: '600', marginBottom: '4px', fontSize: '0.95rem' }}>
                     {form.title || 'Service Title'}
                   </div>
@@ -182,7 +160,7 @@ const AddServicePage = () => {
             </div>
 
             {/* Actions */}
-            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', paddingTop: '8px' }}>
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', paddingTop: '8px', flexWrap: 'wrap' }}>
               <button type="button" className="btn btn-secondary" onClick={() => navigate('/dashboard/services')}>
                 Cancel
               </button>

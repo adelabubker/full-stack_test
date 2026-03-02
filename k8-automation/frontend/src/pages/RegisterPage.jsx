@@ -55,14 +55,8 @@ const RegisterPage = () => {
           style={{ ...baseInputStyle, paddingRight: suffix ? '44px' : '16px' }}
           placeholder={placeholder}
           defaultValue=""
-          onFocus={e => {
-            e.target.style.borderColor = 'rgba(201,168,76,0.6)';
-            e.target.style.boxShadow = '0 0 0 3px rgba(201,168,76,0.15)';
-          }}
-          onBlur={e => {
-            e.target.style.borderColor = 'rgba(255,255,255,0.15)';
-            e.target.style.boxShadow = 'none';
-          }}
+          onFocus={e => { e.target.style.borderColor = 'rgba(201,168,76,0.6)'; e.target.style.boxShadow = '0 0 0 3px rgba(201,168,76,0.15)'; }}
+          onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.15)'; e.target.style.boxShadow = 'none'; }}
         />
         {suffix && (
           <button type="button" onClick={() => setShowPass(!showPass)}
@@ -90,7 +84,7 @@ const RegisterPage = () => {
       <div style={{ width: '100%', maxWidth: '480px', position: 'relative', animation: 'fadeInUp 0.5s ease' }}>
         <div style={{
           background: '#111111', border: '1px solid rgba(201,168,76,0.2)',
-          borderRadius: '20px', padding: '48px 40px',
+          borderRadius: '20px', padding: 'clamp(28px, 8vw, 48px) clamp(20px, 6vw, 40px)',
           boxShadow: '0 24px 80px rgba(0,0,0,0.6)',
         }}>
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
